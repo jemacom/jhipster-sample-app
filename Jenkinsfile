@@ -32,8 +32,8 @@ node {
         }
     }
 
-    stage('packaging') {
-        sh "./mvnw verify -Pprod -DskipTests"
+    stage('Building Dockerfile') {
+        sh "./mvnw package -Pprod  dockerfile:build"
         archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
     }
 
